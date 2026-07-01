@@ -2,7 +2,8 @@ import os
 import threading
 from flask import Flask
 import telebot
-from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
+# এখানে WebAppInfo ইম্পোর্ট করা হয়েছে টেলিগ্রামের ভেতরেই সাইট ওপেন করার জন্য
+from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton, WebAppInfo
 
 # সার্ভার সচল রাখার জন্য Flask ওয়েব সার্ভার
 app = Flask('')
@@ -16,7 +17,7 @@ def run_flask():
     app.run(host='0.0.0.0', port=port)
 
 # বটের মূল সেটিংস
-BOT_TOKEN = '8876149112:AAEEGXBiFy9LK9m1liE8FMml8qUdkMbR6wI'  # এখানে তোমার আসল বটের টোকেন দাও
+BOT_TOKEN = '8876149112:AAEEGXBiFy9LK9m1liE8FMml8qUdkMbR6wI'  # ⚠️ এখানে তোমার আসল বটের টোকেনটি বসিয়ে দাও
 CHANNEL_ID = '@Smart_Earning22'
 BLOGGER_LINK = 'https://technologybd234.blogspot.com/2026/07/import-urlhttpsfonts.html?m=1'
 
@@ -33,7 +34,8 @@ def is_user_joined(user_id):
 
 def get_blogger_markup():
     markup = InlineKeyboardMarkup()
-    btn_blog = InlineKeyboardButton("✨ Name Generator 🚀", url=BLOGGER_LINK)
+    # এখানে web_app ব্যবহার করা হয়েছে যেন পপআপ ছাড়া সরাসরি টেলিগ্রামের ভেতরেই সাইট ওপেন হয়
+    btn_blog = InlineKeyboardButton("✨ Name Generator 🚀", web_app=WebAppInfo(url=BLOGGER_LINK))
     markup.add(btn_blog)
     return markup
 
@@ -77,7 +79,6 @@ def verify_callback(call):
         bot.answer_callback_query(call.id, "❌ আপনি এখনো জয়েন করেননি! দয়া করে প্রথমে চ্যানেলে জয়েন করুন, তারপর ভেরিফাই বাটনে ক্লিক করুন।", show_alert=True)
 
 if __name__ == "__main__":
-    # আলাদা থ্রেডে ওয়েব সার্ভার চালু করা
     t = threading.Thread(target=run_flask)
     t.start()
     
