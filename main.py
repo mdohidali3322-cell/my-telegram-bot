@@ -6,10 +6,9 @@ from telebot import types
 
 app = Flask('')
 
-# ⚠️ এখানে শুধু তোমার বটের আসল API টোকেনটি বসাও
-BOT_TOKEN = '8876149112:AAEEGXBiFy9LK9m1liE8FMml8qUdkMbR6wI'  
+# ⚠️ '  
 
-CHANNEL_ID = '@Smart_Earning22' 
+CHANNEL_ID = '' 
 BLOGGER_URL = 'https://technologybd234.blogspot.com/2026/07/import-urlhttpsfonts.html?m=1'
 
 bot = telebot.TeleBot(BOT_TOKEN)
